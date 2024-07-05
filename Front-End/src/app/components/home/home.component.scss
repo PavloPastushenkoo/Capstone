@@ -1,0 +1,108 @@
+$bg-color: #1a1a1a; /* Grigio Molto Scuro */
+$second-bg-color: #303030; /* Grigio Medio Scuro */
+$text-color: #e6e6e6; /* Grigio Chiaro */
+$main-color: #ff4081; /* Rosa Neon */
+$main-color-darken: darken($main-color, 10%);
+$card-bg-color: #2a2a2a; /* Grigio per le card */
+$footer-height: 4rem; /* Altezza del footer */
+
+.home-container {
+    padding-bottom: $footer-height;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.card {
+    background: $card-bg-color;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: 400px; /* Altezza fissa per tutte le card */
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .card-header {
+        h2 {
+            color: $main-color;
+            margin: 0;
+            font-size: 2.4rem;
+            border-bottom: 2px solid $main-color;
+            padding-bottom: 0.5rem;
+        }
+    }
+
+    .card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            li {
+                color: $text-color;
+                margin: 0.5rem 0;
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+.arrow-container {
+    position: absolute;
+    bottom: -20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .arrow {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid $main-color;
+    }
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background: $second-bg-color;
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+
+    p {
+        color: $text-color;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    a {
+        color: $main-color;
+        margin: 0 1rem;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+
+        &:hover {
+            color: $main-color-darken;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<div id="guestContentWrapper" @fadeInScale>
+    <div class="container mt-5 guest-container">
+        <div class="row justify-content-center">
+            <div
+                class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+                *ngFor="let esercizio of esercizi; let i = index"
+            >
+                <div
+                    class="card d-flex flex-column justify-content-center align-items-center"
+                >
+                    <img
+                        [src]="esercizio.exercise.gifUrl"
+                        alt="{{ esercizio.exercise.name }}"
+                        class="card-img-top"
+                    />
+                    <div
+                        class="card-body text-center"
+                        *ngIf="!elaboratedIndexes.has(i)"
+                    >
+                        <h5 class="card-title">
+                            {{ esercizio.exercise.name }}
+                        </h5>
+                        <p class="card-text">
+                            <strong>Number of Reps:</strong>
+                            {{ esercizio.numberOfReps }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Number of Sets:</strong>
+                            {{ esercizio.numberOfSets }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Used Weight (optional):</strong>
+                            {{ esercizio.usedWeight }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Rest Time Between Sets:</strong>
+                            {{ esercizio.restBetweenSets }} seconds
+                        </p>
+                        <button class="btn-custom" (click)="toggleElaborate(i)">
+                            Elaborate
+                        </button>
+                    </div>
+                    <div
+                        class="card-body text-center"
+                        *ngIf="elaboratedIndexes.has(i)"
+                    >
+                        <h5 class="card-title">
+                            {{ esercizio.exercise.name }}
+                        </h5>
+                        <p class="card-text">
+                            <strong>Intensity:</strong>
+                            {{ esercizio.intensity }}
+                        </p>
+                        <p class="spacer"></p>
+                        <p class="card-text">
+                            {{ getIntensityMessage(esercizio.intensity) }}
+                        </p>
+                        <p class="spacer"></p>
+                        <p class="card-text">
+                            {{
+                                getTargetType(
+                                    esercizio.numberOfReps,
+                                    esercizio.numberOfSets,
+                                    esercizio.restBetweenSets
+                                )
+                            }}
+                        </p>
+                        <button class="btn-custom" (click)="toggleElaborate(i)">
+                            Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

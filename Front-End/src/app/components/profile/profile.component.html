@@ -1,0 +1,112 @@
+<div id="profileContentWrapper" @fadeInScale>
+    <div class="container mt-5 profile-container">
+        <div class="card profile-card">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Profile</h2>
+                <div class="form-group text-center">
+                    <label for="avatar">
+                        <img
+                            [src]="user.avatar || 'assets/default-avatar.png'"
+                            alt="Avatar"
+                            class="avatar-img mx-auto"
+                        />
+                    </label>
+                    <input
+                        type="file"
+                        id="avatar"
+                        (change)="onFileSelected($event)"
+                        hidden
+                    />
+                    <button class="btn btn-custom mt-3" (click)="onUpload()">
+                        Upload Avatar
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="nome"> <i class="fas fa-user"></i> Nome </label>
+                    <input
+                        type="text"
+                        id="nome"
+                        [value]="user.nome"
+                        disabled
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="cognome">
+                        <i class="fas fa-user"></i> Cognome
+                    </label>
+                    <input
+                        type="text"
+                        id="cognome"
+                        [value]="user.cognome"
+                        disabled
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        [value]="user.email"
+                        disabled
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="eta">
+                        <i class="fas fa-birthday-cake"></i> Età
+                    </label>
+                    <input
+                        type="number"
+                        id="eta"
+                        [value]="user.eta"
+                        disabled
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="peso">
+                        <i class="fas fa-weight"></i> Peso
+                    </label>
+                    <input
+                        type="number"
+                        id="peso"
+                        [value]="user.peso"
+                        disabled
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="dataDiNascita">
+                        <i class="fas fa-calendar"></i> Data di Nascita
+                    </label>
+                    <input
+                        type="date"
+                        id="dataDiNascita"
+                        [value]="user.dataDiNascita"
+                        disabled
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="genere">
+                        <i class="fas fa-venus-mars"></i> Genere
+                    </label>
+                    <input
+                        type="text"
+                        id="genere"
+                        [value]="user.genere"
+                        disabled
+                        class="form-control"
+                    />
+                </div>
+                <button class="btn btn-custom mt-5" (click)="logout()">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

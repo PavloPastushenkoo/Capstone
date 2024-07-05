@@ -1,0 +1,431 @@
+$bg-color: #1a1a1a; /* Grigio Molto Scuro */
+$second-bg-color: #303030; /* Grigio Medio Scuro */
+$text-color: #e6e6e6; /* Grigio Chiaro */
+$main-color: #ff4081; /* Rosa Neon */
+$main-color-darken: darken($main-color, 10%);
+$footer-height: 4rem; /* Altezza del footer */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import "bootstrap/scss/bootstrap"; // Import Bootstrap SCSS file
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background: $bg-color;
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: $footer-height; /* Aggiungi un padding inferiore pari all'altezza del footer */
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+.header {
+    width: 100%;
+    padding: 2rem 9%;
+    background: $bg-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.header.sticky {
+    background: $bg-color;
+}
+
+.logo {
+    position: relative;
+    font-size: 3.5rem;
+    color: $text-color;
+    font-weight: 600;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: $text-color;
+    font-weight: 500;
+    margin-left: 3.5rem;
+    transition: 0.5s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: $main-color;
+}
+
+#toggle {
+    margin-left: 35px;
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 25px;
+    border-radius: 25px;
+    background: $main-color;
+    transition: 0.5s;
+    cursor: pointer;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#toggle.active {
+    background: $main-color;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+}
+
+#toggle .indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background: $text-color;
+    border-radius: 50%;
+    transform: scale(0.9);
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3),
+        inset 0 2px 2px rgba(0, 0, 0, 0.2), inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
+#toggle.active .indicator {
+    left: 25px;
+    background: $text-color;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3),
+        inset 0 2px 2px rgba(0, 0, 0, 0.2), inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
+.bx-sun,
+.bx-moon {
+    color: black;
+    font-size: 2rem;
+    position: absolute;
+    transition: opacity 0.5s;
+}
+
+.bx-sun {
+    opacity: 0;
+}
+
+#toggle.active .bx-sun {
+    opacity: 1;
+}
+
+.bx-moon {
+    opacity: 1;
+}
+
+#toggle.active .bx-moon {
+    opacity: 0;
+}
+
+#menu-icon {
+    position: relative;
+    font-size: 3.6rem;
+    color: $text-color;
+    cursor: pointer;
+    display: none;
+}
+
+.animate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: $bg-color;
+    z-index: 98;
+}
+
+.animate.home-img {
+    width: 50%;
+}
+
+.logo .animate,
+.navbar .animate,
+#menu-icon .animate,
+.home.show-animate .animate {
+    animation: showRight 1s ease forwards;
+    animation-delay: calc(0.3s * var(--i));
+}
+
+.animate.scroll {
+    transition: 1s ease;
+    transition-delay: calc(0.3s / var(--i));
+    animation: none;
+}
+
+section:nth-child(odd) .animate.scroll {
+    background: $second-bg-color;
+}
+
+.education .education-box .animate.scroll {
+    width: 105%;
+}
+.about.show-animate .animate.scroll,
+.education.show-animate .animate.scroll,
+.skills.show-animate .animate.scroll,
+.contact.show-animate .animate.scroll,
+.footer.show-animate .animate.scroll {
+    transition-delay: calc(0.3s * var(--i));
+    width: 0;
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 991px) {
+    .header {
+        padding: 2rem 4%;
+    }
+
+    section {
+        padding: 10rem 4% 2rem;
+    }
+    .home {
+        padding: 0 4%;
+    }
+
+    .footer {
+        padding: 2rem 4%;
+    }
+}
+
+@media (max-width: 850px) {
+    .animate.home-img {
+        width: 55%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        background: $bg-color;
+    }
+
+    #toggle {
+        margin: 0;
+        margin-top: 3rem;
+        display: block;
+        transform: translateX(-20rem);
+        transition: transform 0.25s ease;
+    }
+
+    .navbar.active #toggle {
+        transform: translateX(0); /* Posizione finale */
+        transition-delay: 0.25s; /* Ritardo della transizione */
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: 100%;
+        padding: 1rem 4%;
+        background: $main-color;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        transition: 0.25s ease;
+        transition-delay: 0.25s;
+        transition: left 0.25s ease, background 0.25s ease; /* Transizione per left e background */
+    }
+
+    .navbar.active {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        left: 0;
+        transition-delay: 0s;
+    }
+    .navbar .active-nav {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: $bg-color;
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+        z-index: -1;
+        transition: 0.25s ease;
+        transition-delay: 0s;
+    }
+
+    .navbar.active .active-nav {
+        left: 0;
+        transition-delay: 0.25s;
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        transform: translateX(-20rem);
+        transition: 0.25s ease;
+        transition-delay: 0s;
+    }
+    .navbar.active a {
+        transform: translateX(0);
+        transition-delay: 0.25s;
+    }
+
+    .home-imgHover {
+        pointer-events: none;
+        background: $bg-color;
+        opacity: 0.6;
+    }
+}
+
+@media (max-width: 520px) {
+    html {
+        font-size: 50%;
+    }
+
+    .home-content h1 {
+        display: flex;
+        flex-direction: column;
+    }
+    .home-sci {
+        width: 160px;
+    }
+    .home-sci a {
+        width: 38px;
+        height: 38px;
+    }
+}
+@media (max-width: 462px) {
+    .home-content h1 {
+        font-size: 5.2rem;
+    }
+
+    .education {
+        padding: 10rem 4% 5rem 5%;
+    }
+
+    .contact form .input-box .input-field {
+        width: 100%;
+    }
+
+    .footer {
+        flex-direction: column-reverse;
+    }
+
+    .footer p {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    @media (max-width: 371px) {
+        .home {
+            justify-content: center;
+        }
+        .home-content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .home-content h1 {
+            font-size: 5rem;
+        }
+    }
+}
+@keyframes homeBgText {
+    0%,
+    10%,
+    100% {
+        background-position: -35rem 0;
+    }
+    65%,
+    85% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes homeCursorText {
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
+    65%,
+    78%,
+    85% {
+        width: 100%;
+        opacity: 1;
+    }
+    75%,
+    81% {
+        opacity: 0;
+    }
+}
+
+@keyframes aboutSpinner {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes showRight {
+    100% {
+        width: 0;
+    }
+}
+
+.content{
+    margin-bottom: 5rem;
+}

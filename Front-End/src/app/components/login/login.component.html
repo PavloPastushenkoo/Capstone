@@ -1,0 +1,32 @@
+<div id="loginContentWrapper" @fadeInScale>
+    <div class="container mt-5 register-container">
+        <form (ngSubmit)="onSubmit()" class="register-form">
+            <h2 class="text-center mb-4">Login</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    [(ngModel)]="email"
+                    placeholder="Enter your email"
+                    name="email"
+                    required
+                    class="form-control"
+                />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    [(ngModel)]="password"
+                    placeholder="Enter your password"
+                    name="password"
+                    required
+                    class="form-control"
+                />
+            </div>
+            <button type="submit" class="btn btn-custom mt-5">Login</button>
+        </form>
+    </div>
+</div>

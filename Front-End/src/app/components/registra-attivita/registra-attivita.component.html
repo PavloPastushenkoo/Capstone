@@ -1,0 +1,115 @@
+<div id="registerContentWrapper" @fadeInSlide>
+    <div class="container mt-5 register-container">
+        <form
+            #registerForm="ngForm"
+            (ngSubmit)="onCriteriaChange($event)"
+            class="register-form"
+        >
+            <h2 class="text-center mb-4">Registra Attività</h2>
+            <div class="form-group">
+                <label for="criteriaSelect" class="parteDelCorpo"
+                    >Scegli un criterio:</label
+                >
+                <select
+                    id="criteriaSelect"
+                    (change)="onCriteriaChange($event)"
+                    class="menuTendina form-control"
+                >
+                    <option value="" disabled [selected]="!selectedCriteria">
+                        Select criterium
+                    </option>
+                    <option
+                        *ngFor="let criterion of criteria"
+                        [value]="criterion"
+                    >
+                        {{ criterion }}
+                    </option>
+                </select>
+            </div>
+            <div
+                *ngIf="selectedCriteria === 'equipment'"
+                class="form-group"
+                @fadeIn
+            >
+                <label for="equipmentSelect" class="parteDelCorpo"
+                    >Scegli un attrezzo:</label
+                >
+                <select
+                    id="equipmentSelect"
+                    (change)="onOptionChange($event)"
+                    class="menuTendina form-control"
+                >
+                    <option value="" disabled [selected]="!selectedOption">
+                        Select equipment
+                    </option>
+                    <option *ngFor="let equip of equipment" [value]="equip">
+                        {{ equip }}
+                    </option>
+                </select>
+            </div>
+            <div
+                *ngIf="selectedCriteria === 'bodyPart'"
+                class="form-group"
+                @fadeIn
+            >
+                <label for="bodyPartSelect" class="parteDelCorpo"
+                    >Scegli una parte del corpo:</label
+                >
+                <select
+                    id="bodyPartSelect"
+                    (change)="onOptionChange($event)"
+                    class="menuTendina form-control"
+                >
+                    <option value="" disabled [selected]="!selectedOption">
+                        Select body part
+                    </option>
+                    <option *ngFor="let part of bodyParts" [value]="part">
+                        {{ part }}
+                    </option>
+                </select>
+            </div>
+            <div
+                *ngIf="selectedCriteria === 'target'"
+                class="form-group"
+                @fadeIn
+            >
+                <label for="targetSelect" class="parteDelCorpo"
+                    >Scegli un obiettivo:</label
+                >
+                <select
+                    id="targetSelect"
+                    (change)="onOptionChange($event)"
+                    class="menuTendina form-control"
+                >
+                    <option value="" disabled [selected]="!selectedOption">
+                        Select target
+                    </option>
+                    <option *ngFor="let target of targets" [value]="target">
+                        {{ target }}
+                    </option>
+                </select>
+            </div>
+        </form>
+        <div *ngIf="isLoading" class="loading-spinner">
+            <div class="spinner"></div>
+        </div>
+        <div class="list show-animate" #listHTML *ngIf="exercises.length > 0">
+            <ng-container *ngFor="let exercise of exercises; let i = index">
+                <div class="item" [style.--i]="i">
+                    <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
+                    <div class="introduce">
+                        <div class="title">{{ exercise.name }}</div>
+                        <div class="topic">{{ exercise.bodyPart }}</div>
+                        <div class="des">{{ exercise.target }}</div>
+                        <button
+                            class="seeMore"
+                            (click)="navigateToExercise(exercise.id)"
+                        >
+                            Choose This Exercise
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

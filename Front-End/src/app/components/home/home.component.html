@@ -1,0 +1,19 @@
+<div class="home-container">
+    <div class="card-container" *ngFor="let step of steps; let i = index">
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ step.number }}. {{ step.title }}</h2>
+            </div>
+            <div class="card-content">
+                <ul>
+                    <li *ngFor="let detail of step.details">{{ detail }}</li>
+                </ul>
+            </div>
+        </div>
+        <div *ngIf="i < steps.length - 1" class="arrow-container">
+            <div class="arrow"></div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

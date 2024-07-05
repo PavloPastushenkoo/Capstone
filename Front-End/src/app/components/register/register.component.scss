@@ -1,0 +1,123 @@
+$bg-color: #1a1a1a; /* Grigio Molto Scuro */
+$second-bg-color: #303030; /* Grigio Medio Scuro */
+$text-color: #e6e6e6; /* Grigio Chiaro */
+$main-color: #ff4081; /* Rosa Neon */
+$main-color-darken: darken($main-color, 10%);
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import "bootstrap/scss/bootstrap"; // Import Bootstrap SCSS file
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background: $bg-color;
+    color: $text-color;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: $bg-color;
+}
+
+h2 {
+    color: #ff4081;
+    font-size: 3rem !important;
+}
+
+.register-form {
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: $text-color;
+            font-size: 1.8rem; /* Aumentato la dimensione del font */
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 1.5rem; /* Aumentato la dimensione del padding */
+            font-size: 1.8rem; /* Aumentato la dimensione del font */
+            border-radius: 5px;
+            border: 1px solid $main-color;
+            background: $bg-color;
+            color: $text-color;
+
+            &:focus {
+                border-color: $main-color-darken;
+                box-shadow: 0 0 5px $main-color;
+            }
+
+            &::placeholder {
+                color: lighten($text-color, 20%);
+            }
+        }
+    }
+
+    .btn-custom {
+        display: block;
+        width: 100%;
+        padding: 1.5rem; /* Aumentato la dimensione del padding */
+        margin-top: 2rem;
+        background: $main-color;
+        color: $text-color;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.8rem; /* Aumentato la dimensione del font */
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+            background: $main-color-darken;
+        }
+
+        &:disabled {
+            background: lighten($main-color, 20%);
+        }
+    }
+}
+
+.footer-col {
+    .social-links a {
+        color: $main-color;
+        margin: 0 10px;
+        font-size: 1.5em;
+        transition: color 0.3s;
+
+        &:hover {
+            color: $main-color-darken;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .register-form .form-group label,
+    .register-form .form-group input,
+    .register-form .form-group select,
+    .register-form .btn-custom {
+        font-size: 1.6rem; /* Aumentato la dimensione del font */
+    }
+}

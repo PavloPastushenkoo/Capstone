@@ -1,0 +1,109 @@
+<div id="registerContentWrapper" @fadeInScale>
+    <div class="container mt-5 register-container">
+        <form
+            #registerForm="ngForm"
+            (ngSubmit)="onSubmitRegister(registerForm)"
+            class="register-form"
+        >
+            <h2 class="text-center mb-4">Crea un nuovo Account</h2>
+            <div class="form-group">
+                <label for="nomeRegister">Nome</label>
+                <input
+                    type="text"
+                    placeholder="Nome"
+                    id="nomeRegister"
+                    name="nomeRegister"
+                    required
+                    class="form-control"
+                    ngModel
+                />
+            </div>
+            <div class="form-group">
+                <label for="cognomeRegister">Cognome</label>
+                <input
+                    type="text"
+                    placeholder="Cognome"
+                    id="cognomeRegister"
+                    name="cognomeRegister"
+                    required
+                    class="form-control"
+                    ngModel
+                />
+            </div>
+            <div class="form-group">
+                <label for="emailRegister">Email</label>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    id="emailRegister"
+                    name="emailRegister"
+                    required
+                    class="form-control"
+                    ngModel
+                />
+            </div>
+            <div class="form-group">
+                <label for="passwordRegister">Password</label>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    id="passwordRegister"
+                    name="passwordRegister"
+                    required
+                    class="form-control"
+                    ngModel
+                />
+            </div>
+            <div class="form-group">
+                <label for="dateOfBirthRegister">Data di Nascita</label>
+                <input
+                    type="date"
+                    id="dateOfBirthRegister"
+                    name="dateOfBirthRegister"
+                    class="form-control"
+                    ngModel
+                />
+            </div>
+            <div class="form-group">
+                <label for="genderRegister">Genere</label>
+                <select
+                    id="genderRegister"
+                    name="genderRegister"
+                    class="form-control"
+                    ngModel
+                >
+                    <option value="male">Maschio</option>
+                    <option value="female">Femmina</option>
+                    <option value="other">Altro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="heightRegister">Altezza (cm)</label>
+                <input
+                    type="number"
+                    id="heightRegister"
+                    name="heightRegister"
+                    class="form-control"
+                    ngModel
+                />
+            </div>
+            <div class="form-group">
+                <label for="weightRegister">Peso (kg)</label>
+                <input
+                    type="number"
+                    id="weightRegister"
+                    name="weightRegister"
+                    class="form-control"
+                    ngModel
+                />
+            </div>
+            <button
+                class="btn btn-custom"
+                type="submit"
+                [disabled]="registerForm.invalid"
+            >
+                Registrati
+            </button>
+        </form>
+    </div>
+</div>

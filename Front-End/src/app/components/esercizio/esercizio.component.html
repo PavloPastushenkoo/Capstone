@@ -1,0 +1,97 @@
+<div
+    *ngIf="!loading; else loadingTemplate"
+    class="container mt-4 exercise-container"
+    @fadeInSlide
+>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">{{ exercise.name }}</h1>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-center">
+            <img
+                [src]="exercise.gifUrl"
+                alt="{{ exercise.name }}"
+                class="img-fluid rounded exercise-image"
+            />
+        </div>
+        <div class="col-12 col-md-6">
+            <p><strong>Body Part:</strong> {{ exercise.bodyPart }}</p>
+            <p><strong>Equipment:</strong> {{ exercise.equipment }}</p>
+            <p><strong>Target:</strong> {{ exercise.target }}</p>
+            <p>
+                <strong>Secondary Muscles:</strong>
+                {{ exercise.secondaryMuscles.join(", ") }}
+            </p>
+            <p><strong>Instructions:</strong></p>
+            <div class="instruction-list">
+                <p
+                    *ngFor="let instruction of exercise.instructions"
+                    class="instruction-item"
+                >
+                    {{ instruction }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-custom mt-4" (click)="toggleForm()">
+        Compila esercizio
+    </button>
+    <div *ngIf="showForm" class="mt-4" @fadeInSlide>
+        <form
+            #exerciseForm="ngForm"
+            (ngSubmit)="submitForm(exerciseForm.value)"
+            class="exercise-form"
+        >
+            <div class="form-group">
+                <label for="reps">Number of Reps:</label>
+                <input
+                    type="number"
+                    id="reps"
+                    name="numberOfReps"
+                    ngModel
+                    required
+                    class="form-control"
+                />
+            </div>
+            <div class="form-group">
+                <label for="sets">Number of Sets:</label>
+                <input
+                    type="number"
+                    id="sets"
+                    name="numberOfSets"
+                    ngModel
+                    required
+                    class="form-control"
+                />
+            </div>
+            <div class="form-group">
+                <label for="weight">Used Weight (optional):</label>
+                <input
+                    type="number"
+                    id="weight"
+                    name="usedWeight"
+                    ngModel
+                    class="form-control"
+                />
+            </div>
+            <div class="form-group">
+                <label for="rest">Rest Time Between Sets: (seconds)</label>
+                <input
+                    type="number"
+                    id="rest"
+                    name="restBetweenSets"
+                    ngModel
+                    required
+                    class="form-control"
+                />
+            </div>
+            <button type="submit" class="btn btn-custom mt-2">Submit</button>
+        </form>
+    </div>
+</div>
+<ng-template #loadingTemplate>
+    <div class="container text-center mt-4 loading-container">
+        <div class="spinner-border" role="status"></div>
+        <p class="loading-text mt-2">Loading exercise details...</p>
+    </div>
+</ng-template>
